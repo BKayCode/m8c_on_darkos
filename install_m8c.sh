@@ -33,13 +33,13 @@ echo "Hole Pakete..."
 if [ ! -f "/usr/local/lib/libSDL3.so" ] && [ ! -f "/usr/lib/aarch64-linux-gnu/libSDL3.so" ]; then
     echo "libSDL3.so wurde nicht gefunden. Installiere lokales Paket..."
     wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/sdl3-sdl2backend.deb -t 3 -T 60 --waitretry=10 -P /tmp/
-    sudo apt-get install -y /tmp/sdl3-sdl2backend.deb
+    apt-get install -y /tmp/sdl3-sdl2backend.deb
 else
     echo "libSDL3.so ist bereits vorhanden."
 fi
 
 wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/m8c_v2.2.3_arm64.deb -t 3 -T 60 --waitretry=10 -P /tmp/
-sudo apt install -y /tmp/m8c_v2.2.3_arm64.deb
+apt install -y /tmp/m8c_v2.2.3_arm64.deb
 }
 
 wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/config.ini -t 3 -T 60 --waitretry=10 -P /home/ark/.local/share/m8c/
