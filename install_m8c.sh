@@ -28,8 +28,8 @@ need_root() {
 
 install_debs() {
 echo "Hole Pakete..."
-wget https://githubusercontent.com/BKayCode/SDL3-sdl2-backend_arm64.deb -t 3 -T 60 --waitretry=10 -P /tmp/
-wget https://githubusercontent.com/BKayCode/m8c_v2.2.3_arm64.deb -t 3 -T 60 --waitretry=10 -P /tmp/
+wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/SDL3-sdl2-backend_arm64.deb -t 3 -T 60 --waitretry=10 -P /tmp/
+wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/m8c_v2.2.3_arm64.deb -t 3 -T 60 --waitretry=10 -P /tmp/
 
 sudo apt install /tmp/SDL3-sdl2-backend_arm64.deb /tmp/m8c_v2.2.3_arm64.deb
 }
