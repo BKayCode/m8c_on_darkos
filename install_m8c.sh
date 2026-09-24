@@ -168,6 +168,7 @@ EOF
 
 cleanup(){
     rm /tmp/m8c_v2.2.3_arm64.deb /tmp/sdl3-sdl2backend.deb
+    rm /roms/tools/install_m8c.sh
 }
 
 # ----------------------------- Hauptablauf -----------------------------------
