@@ -1,0 +1,38 @@
+sudo systemctl stop emulationstation.service
+sudo systemctl stop ogage.service
+
+sudo apt install build-essential libstdc++-12-dev
+
+git clone --recursive https://github.com/bmdhacks/SDL.git -b sdl2-backend SDL3
+cd SDL3
+git clone https://github.com/KhronosGroup/SPIRV-Cross.git
+
+mkdir build
+cd build
+
+cmake .. \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_C_FLAGS="-mcpu=cortex-a35" \
+      -DSDL_SDL2_BACKEND=ON \
+      -DSDL_SPIRV_CROSS_DIR=../SPIRV-Cross \
+      -DSDL_X11=OFF \
+      -DSDL_WAYLAND=OFF \
+      -DSDL_KMSDRM=OFF \
+      -DSDL_PIPEWIRE=OFF \
+      -DSDL_PULSEAUDIO=OFF \
+      -DSDL_ALSA=OFF \
+      -DSDL_SNDIO=OFF \
+      -DSDL_OSS=OFF \
+      -DSDL_JACK=OFF \
+      -DSDL_OFFSCREEN=OFF \
+      -DSDL_DUMMYVIDEO=OFF \
+      -DSDL_DUMMYAUDIO=OFF \
+      -DSDL_DISKAUDIO=OFF \
+      -DSDL_VULKAN=OFF \
+      -DSDL_GPU=ON \
+      -DSDL_RENDER_GPU=ON \
+      -DSDL_UNIX_CONSOLE_BUILD=ON
+export LDFLAGS="${LDFLAGS} -lrga"
+
+make -j3
+make install
