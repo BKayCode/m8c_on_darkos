@@ -42,6 +42,7 @@ wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/m8c_v2.2.3_ar
 sudo apt install -y /tmp/m8c_v2.2.3_arm64.deb
 }
 
+wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/config.ini -t 3 -T 60 --waitretry=10 -P /home/ark/.local/share/m8c/
 
 # ----------------------------- 6. Launcher-Skript ----------------------------
 create_launcher() {
