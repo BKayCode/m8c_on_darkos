@@ -5,3 +5,7 @@ Script to install m8c on your R36s running dArkOS:
 - creates launcher script to re-route audio from Teensy to internal Speaker/Headphones jack
 - also lets you close m8c via pressing select & start
 - creates udev rule for Teensy communication
+
+Simply download install_m8c.sh to your sd card in tools.
+Connect to the internet and navigate to it: Start > Options > Tools
+The starter is also located in this path.
