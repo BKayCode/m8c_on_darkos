@@ -67,19 +67,21 @@ if [ "$IS_SUPPORTED_HARDWARE" = false ]; then
 fi
 
 install_debs() {
-echo "Get Packages..."
+log "Get Packages..."
 
 #SDL nur holen, wenn /usr/local/lib/libSDL3.so oder /usr/lib/aarch64-linux-gnu/libSDL3.so nicht gefunden
 if [ ! -f "/usr/local/lib/libSDL3.so" ] && [ ! -f "/usr/lib/aarch64-linux-gnu/libSDL3.so" ]; then
-    echo "libSDL3.so was not found. Install locales Package..."
+    log "libSDL3.so was not found. Install locales Package..."
     wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/sdl3-sdl2backend.deb -t 3 -T 60 --waitretry=10 -P /tmp/
     apt-get install -y /tmp/sdl3-sdl2backend.deb
 fi
 
+log "Get and install m8c package..."
 wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/m8c_v2.2.3_arm64.deb -t 3 -T 60 --waitretry=10 -P /tmp/
 apt install -y /tmp/m8c_v2.2.3_arm64.deb
 }
 
+log "copy config.ini..."
 wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/config.ini -t 3 -T 60 --waitretry=10 -P /home/ark/.local/share/m8c/
 
 # ----------------------------- 6. Launcher-Skript ----------------------------
