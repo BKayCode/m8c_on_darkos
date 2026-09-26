@@ -1,11 +1,9 @@
 #!/bin/bash
 # =============================================================================
-# m8c Installer für R36S / DarkOS (monolithisch)
-# - Prüft auf libSDL3.so.0 → entscheidet zwischen v1.7.10 (SDL2) und neuestem Release (SDL3)
-# - Installiert Dependencies
-# - Baut und installiert m8c
-# - Löscht den Git-Ordner
-# - Legt Platzhalter-Skript in /roms/tools an
+# m8c Installer für R36S / DarkOS
+# - Prüft auf libSDL3.so.0 und installiert ggf. SDL3-sdl2backend
+# - installiert m8cr
+# - Legt Starter-Skript /opt/system/m8c.sh an
 # - Setzt udev-Regel für Teensy 4.1 (Vendor 16c0 / Product 04*) für User "ark"
 # =============================================================================
 
@@ -88,7 +86,7 @@ wget https://github.com/BKayCode/m8c_on_darkos/raw/refs/heads/main/config.ini -t
 create_launcher() {
     log "Creating Launcher..."
 
-    cat > /roms/tools/m8c.sh << 'EOF'
+    cat > /opt/system/m8c.sh << 'EOF'
 #!/bin/bash
 
 # =====================================
@@ -173,9 +171,9 @@ wait $M8C_PID 2>/dev/null
 cleanup
 EOF
 
-    chmod +x /roms/tools/m8c.sh
-    chown ark:ark /roms/tools/m8c.sh 2>/dev/null || true
-    log "wrote launcher: /roms/tools/m8c.sh"
+    chmod +x /opt/system/m8c.sh
+    chown ark:ark /opt/system/m8c.sh 2>/dev/null || true
+    log "wrote launcher: /opt/system/m8c.sh"
 }
 
 # ----------------------------- 7. udev-Regel Teensy 4.1 ----------------------
@@ -208,7 +206,6 @@ EOF
 
 cleanup(){
     rm /tmp/m8c_v2.2.3_arm64.deb /tmp/sdl3-sdl2backend.deb
-    rm /roms/tools/install_m8c.sh
 }
 
 # ----------------------------- Hauptablauf -----------------------------------
@@ -223,7 +220,7 @@ main() {
     log "=== Done! ==="
     echo
     echo "  Binary:     /usr/local/bin/m8c"
-    echo "  Launcher:   /roms/tools/m8c.sh"
+    echo "  Launcher:   /opt/system/m8c.sh"
     echo "  udev-rule: ${UDEV_RULE}"
     echo
 }
